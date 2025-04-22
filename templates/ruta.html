@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rutas de Entrega</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .tabla-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resumen de Rutas de Entrega</h1>
+
+    <div class="tabla-container">
+        <table>
+            <tr>
+                <th>Ruta</th>
+                <th>Distancia (km)</th>
+                <th>Gasolina (L)</th>
+                <th>Casetas ($)</th>
+                <th>Tiempo (h)</th>
+                <th>Paquetes</th>
+            </tr>
+            {% for resumen in resumenes %}
+            <tr>
+                <td>{{ resumen.ruta }}</td>
+                <td>{{ resumen.distancia_km }}</td>
+                <td>{{ resumen.gasolina_l }}</td>
+                <td>{{ resumen.casetas }}</td>
+                <td>{{ resumen.tiempo_h }}</td>
+                <td>{{ resumen.paquetes }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
+
