@@ -1,0 +1,101 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planificador de Rutas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+    }
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label, select, input {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    select, input[type="number"] {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .ciudad-destino {
+      background-color: #f8f9fa;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Planificador de Rutas de Entrega</h1>
+  </header>
+
+  <div class="container">
+    <form action="/" method="post">
+      <label for="origen">Ciudad Inicial (Almacén):</label>
+      <select name="origen" id="origen" required>
+        {% for ciudad in ciudades %}
+          <option value="{{ ciudad }}">{{ ciudad }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="almacen">Ciudad de Almacenaje (debe ser diferente de la inicial):</label>
+      <select name="almacen" id="almacen" required>
+        {% for ciudad in ciudades %}
+          <option value="{{ ciudad }}">{{ ciudad }}</option>
+        {% endfor %}
+      </select>
+
+      <h3>Selecciona destinos y asigna paquetes:</h3>
+      {% for ciudad in ciudades %}
+        <div class="ciudad-destino">
+          <input type="checkbox" name="ciudades" value="{{ ciudad }}" id="{{ ciudad }}">
+          <label for="{{ ciudad }}">{{ ciudad }}</label>
+          <input type="number" name="paquetes_{{ ciudad }}" min="0" placeholder="0 paquetes">
+        </div>
+      {% endfor %}
+
+      <br>
+      <button type="submit">Calcular Ruta</button>
+    </form>
+  </div>
+
+</body>
+</html>
+
